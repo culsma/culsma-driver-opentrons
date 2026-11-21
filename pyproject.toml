@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "culsma-opentrons-simulator"
+version = "0.1.0"
+description = "Simulator-only Culsma OT-2 driver integration laboratory"
+requires-python = ">=3.11,<3.13"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = ["culsma>=1.0.11rc1,<1.1", "opentrons==8.8.2", "pydantic==2.11.7", "pydantic-settings==2.10.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[project.entry-points."culsma.drivers"]
+opentrons-simulator = "culsma_opentrons.plugin:OpentronsSimulatorFactory"
+
+[project.entry-points."culsma.program_executors"]
+opentrons-simulator = "culsma_opentrons.standalone:StandaloneProgramExecutorFactory"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+
+"culsma_opentrons" = ["fault_catalog.json"]

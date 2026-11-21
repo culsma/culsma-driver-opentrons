@@ -1,0 +1,62 @@
+{
+  "DRV_OT_COMPLETION_UNCONFIRMED": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.operation.completion_unconfirmed",
+    "provenance": "Driver could not confirm the operation outcome"
+  },
+  "DRV_OT_TIPS_INSUFFICIENT": {
+    "code": "TIP_UNAVAILABLE",
+    "reason": "culsma.tip.stock_exhausted",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "OutOfTipsError": {
+    "code": "TIP_UNAVAILABLE",
+    "reason": "culsma.tip.stock_exhausted",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "PipetteLiquidNotFoundError": {
+    "code": "LIQUID_NOT_DETECTED",
+    "reason": "culsma.liquid.not_detected",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "TipNotAttachedError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.tip.not_attached",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "TipAttachedError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.tip.already_attached",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "TipPickupFailedError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.tip.pickup_failed",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "TipDropFailedError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.tip.drop_failed",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "InvalidAspirateVolumeError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.transfer.capacity_exceeded",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "LocationIsOccupiedError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.location.occupied",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "InvalidTargetTemperatureError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.parameter.out_of_range",
+    "provenance": "Opentrons SDK typed exception"
+  },
+  "FailedGripperPickupError": {
+    "code": "DEVICE_ERROR",
+    "reason": "culsma.motion.object_not_found",
+    "provenance": "Opentrons SDK typed exception"
+  }
+}
