@@ -1,0 +1,68 @@
+name: Publish driver release
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/releases/*.md']
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: driver-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Select and verify tagged source
+        id: version
+        run: |
+          python - <<'PY'
+          import os, pathlib, re, subprocess, tomllib
+          version = tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version']
+          tag = f'v{version}'
+          if not re.fullmatch(r'v\d+\.\d+\.\d+', tag):
+              raise SystemExit('A stable version is required')
+          if os.environ['GITHUB_REF_TYPE'] == 'tag' and os.environ['GITHUB_REF_NAME'] != tag:
+              raise SystemExit('Tag and package version differ')
+          notes = pathlib.Path('.github/releases') / f'{tag}.md'
+          pathlib.Path(os.environ['RUNNER_TEMP'], 'release-notes.md').write_text(notes.read_text())
+          subprocess.run(['git', 'checkout', '--detach', tag], check=True)
+          actual = tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version']
+          if actual != version:
+              raise SystemExit('Tagged package version differs')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              print(f'tag={tag}', file=out)
+              print(f'version={version}', file=out)
+          PY
+      - name: Test and build tagged release
+        run: |
+          python -m pip install '.[dev]' build twine
+          python -m pytest -q
+          python -m build
+          python -m twine check dist/*
+      - name: Publish release and distributions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release already exists; leaving its assets unchanged."
+          else
+            gh release create "$RELEASE_TAG" dist/* --verify-tag \
+              --title "Culsma Opentrons Driver $RELEASE_VERSION" \
+              --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi
