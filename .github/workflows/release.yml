@@ -2,8 +2,6 @@ name: Publish driver release
 
 on:
   push:
-    branches: [main]
-    paths: ['.github/releases/*.md']
     tags: ['v*']
   workflow_dispatch:
 
@@ -61,7 +59,11 @@ jobs:
           RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            echo "Release already exists; leaving its assets unchanged."
+            gh release edit "$RELEASE_TAG" --draft
+            gh release upload "$RELEASE_TAG" dist/* --clobber
+            gh release edit "$RELEASE_TAG" --draft=false --latest \
+              --title "Culsma Opentrons Driver $RELEASE_VERSION" \
+              --notes-file "$RUNNER_TEMP/release-notes.md"
           else
             gh release create "$RELEASE_TAG" dist/* --verify-tag \
               --title "Culsma Opentrons Driver $RELEASE_VERSION" \

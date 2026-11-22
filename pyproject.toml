@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "culsma-opentrons-simulator"
 version = "0.1.0"
 description = "Culsma driver for Opentrons software simulation"
+readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
