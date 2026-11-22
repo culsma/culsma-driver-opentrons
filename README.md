@@ -15,6 +15,6 @@ python -m pip install 'culsma==1.0.11' 'lark==1.3.1' '.[dev]'
 python -m pytest -q
 ```
 
-For the paper, the [benchmark README](https://github.com/culsma/culsma/blob/v1.0.11/benchmarks/automation/README.md) gives the program, deck configuration, dependency installation instructions, a shared reproduction command and checks on the resulting records. The [examples](examples/) provide smaller inputs and workstation configurations. The [standalone tests](tests/standalone/) exercise driver registration, device requests, capability checks and execution feedback.
+For the paper, the [benchmark README](https://github.com/culsma/culsma/blob/main/benchmarks/automation/README.md) gives the program, deck configuration, dependency installation instructions, a shared reproduction command and checks on the resulting records. The [examples](examples/) provide smaller inputs and workstation configurations. The [standalone tests](tests/standalone/) exercise driver registration, device requests, capability checks and execution feedback.
 
 Distributed under the [Apache License 2.0](LICENSE).
