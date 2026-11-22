@@ -2,7 +2,7 @@
 
 This driver connects the Culsma CLI to the Opentrons Python simulator. Pipetting and supported plate movements run through the official simulator. Reference device models supply centrifugation and incubation for the [whole-blood automation benchmark](https://github.com/culsma/culsma/tree/v1.0.11/benchmarks/automation/whole-blood-lps-rbc). The benchmark records simulated actions and device feedback. Use this distribution for software simulation.
 
-The repository is named `culsma-driver-opentrons`. The Python distribution used for the benchmark is `culsma-opentrons-simulator` 0.1.0 and its CLI driver name is `opentrons-simulator`. The Python implementation in this snapshot matches driver revision `90ad174576eeb5798f9b80602bfefb14a0fe12b1`.
+The repository is named `culsma-driver-opentrons`. The Python distribution used for the benchmark is `culsma-opentrons-simulator` 0.1.0 and its CLI driver name is `opentrons-simulator`.
 
 ## Install and test
 
@@ -11,7 +11,7 @@ From this checkout, create a Python 3.11 environment and install the Culsma core
 ```sh
 python3.11 -m venv .venv
 . .venv/bin/activate
-python -m pip install 'culsma @ git+https://github.com/culsma/culsma.git@610710284457cf4210f56ef44512e3d0be0e8786' 'lark==1.3.1' '.[dev]'
+python -m pip install 'culsma==1.0.11' 'lark==1.3.1' '.[dev]'
 python -m pytest -q
 ```
 
