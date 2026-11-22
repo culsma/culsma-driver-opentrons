@@ -1,6 +1,6 @@
 # Culsma driver for Opentrons
 
-This driver connects the Culsma CLI to the Opentrons Python simulator. Pipetting and supported plate movements run through the official simulator. Reference device models supply centrifugation and incubation for the [whole-blood automation benchmark](https://github.com/culsma/culsma/tree/b331b1edfaef57b7722536cbca896ed5a7649713/benchmarks/automation/whole-blood-lps-rbc). The benchmark records simulated actions and device feedback. Use this distribution for software simulation.
+This driver connects the Culsma CLI to the Opentrons Python simulator. Pipetting and supported plate movements run through the official simulator. Reference device models supply centrifugation and incubation for the [whole-blood automation benchmark](https://github.com/culsma/culsma/tree/v1.0.11/benchmarks/automation/whole-blood-lps-rbc). The benchmark records simulated actions and device feedback. Use this distribution for software simulation.
 
 The repository is named `culsma-driver-opentrons`. The Python distribution used for the benchmark is `culsma-opentrons-simulator` 0.1.0 and its CLI driver name is `opentrons-simulator`. The Python implementation in this snapshot matches driver revision `90ad174576eeb5798f9b80602bfefb14a0fe12b1`.
 
@@ -15,6 +15,6 @@ python -m pip install 'culsma @ git+https://github.com/culsma/culsma.git@6107102
 python -m pytest -q
 ```
 
-For the paper, the [benchmark README](https://github.com/culsma/culsma/blob/b331b1edfaef57b7722536cbca896ed5a7649713/benchmarks/automation/whole-blood-lps-rbc/README.md) gives the program, deck configuration, exact installation packages, CLI commands and checks on the resulting records. The [examples](examples/) provide smaller inputs and workstation configurations. The [standalone tests](tests/standalone/) exercise driver registration, device requests, capability checks and execution feedback.
+For the paper, the [benchmark README](https://github.com/culsma/culsma/blob/v1.0.11/benchmarks/automation/README.md) gives the program, deck configuration, dependency installation instructions, a shared reproduction command and checks on the resulting records. The [examples](examples/) provide smaller inputs and workstation configurations. The [standalone tests](tests/standalone/) exercise driver registration, device requests, capability checks and execution feedback.
 
 Distributed under the [Apache License 2.0](LICENSE).
